@@ -47,8 +47,8 @@
 
                                     @foreach ($technologies as $tech)
                                         <input type="checkbox" name="technology[]" id="technology-{{ $tech->id }}"
-                                            value="{{ $technology->id }}"
-                                            {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                                            value="{{ $tech->id }}"
+                                            {{ $project->technologies->contains($tech->id) ? 'checked' : '' }}>
                                         <div for=""
                                             class="badge_container {{ $tech->badge_class }} my_badge text-white">
                                             {{ $tech->name }}</div>

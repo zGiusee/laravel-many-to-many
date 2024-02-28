@@ -40,7 +40,7 @@
 
                                 {{-- PROJECT TECNOLOGIES --}}
                                 <div class="col-12 my-3 checkbox">
-                                    <label for="">Technologies:</label>ì
+                                    <label for="">Technologies:</label>
                                     @foreach ($technologies as $tech)
                                         <input type="checkbox" name="technology[]" id="technology-{{ $tech->id }}"
                                             value="{{ $tech->id }}" @checked(is_array(old('technology')) && in_array($tech->id, old('technology')))>
