@@ -191,37 +191,41 @@ main {
 
 // BADGE COLORS
 
+
+.my_badge_blue,
+.my_badge_pink,
+.my_badge_yellow,
+.my_badge_orange,
+.my_badge_purple,
+.my_badge_green,
+.my_badge_red {
+    color: white;
+}
+
 .my_badge_blue {
     background-color: rgb(35, 130, 255);
-    color: white;
 }
 
 .my_badge_pink {
     background-color: rgb(255, 125, 160);
-    color: white;
 }
 
 .my_badge_yellow {
     background-color: rgb(255, 215, 0);
-    color: white;
 }
 
 .my_badge_orange {
     background-color: rgb(255, 115, 0);
-    color: white;
 }
 
 .my_badge_purple {
     background-color: rgb(190, 0, 190);
-    color: white;
 }
 
 .my_badge_green {
     background-color: rgb(0, 180, 0);
-    color: white;
 }
 
 .my_badge_red {
     background-color: rgb(255, 20, 20);
-    color: white;
 }

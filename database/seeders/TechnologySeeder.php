@@ -52,7 +52,7 @@ class TechnologySeeder extends Seeder
         foreach ($techs as $tech) {
             $new_tech = new Technology();
             $new_tech->name = $tech['name'];
-            $new_tech->class_color = $tech['color'];
+            $new_tech->badge_class = $tech['color'];
             $new_tech->slug = Str::slug($new_tech->name, '-');
             $new_tech->save();
         }
