@@ -38,6 +38,19 @@
                                     </select>
                                 </div>
 
+                                {{-- PROJECT TECNOLOGIES --}}
+                                <div class="col-12 my-3 checkbox">
+                                    <label for="">Technologies:</label>ì
+                                    @foreach ($technologies as $tech)
+                                        <input type="checkbox" name="technology[]" id="technology-{{ $tech->id }}"
+                                            value="{{ $tech->id }}" @checked(is_array(old('technology')) && in_array($tech->id, old('technology')))>
+                                        <div for=""
+                                            class="badge_container {{ $tech->badge_class }} my_badge text-white">
+                                            {{ $tech->name }}</div>
+                                    @endforeach
+
+                                </div>
+
                                 {{-- REPOSITORY LINK --}}
                                 <div class="col-12 my-3">
                                     <label for="repository_link">Repository link:</label>

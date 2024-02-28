@@ -17,6 +17,7 @@
                                 <th scope="col">Starting Date</th>
                                 <th scope="col">Ending Date</th>
                                 <th scope="col">Type</th>
+                                <th class="tech-th" scope="col">Technologies</th>
                                 {{-- <th scope="col">Slug</th> --}}
                                 <th scope="col">Tools</th>
                             </tr>
@@ -30,7 +31,14 @@
                                     <td>{{ Str::limit($project->repository_link, 30, '...') }}</td>
                                     <td>{{ $project->date_start }}</td>
                                     <td>{{ $project->date_end }}</td>
-                                    <td>{{ $project->type != null ? $project->type->name : 'Nessun tipo associato' }}
+                                    <td>{{ $project->type != null ? $project->type->name : 'Nessun tipo associato' }}</td>
+                                    <td>
+                                        @forelse ($project->technologies as $tech)
+                                            <div class="my_badge m-1 d-inline-block {{ $tech->badge_class }}">
+                                                {{ $tech->name }}</div>
+                                        @empty
+                                            No Technologies used...
+                                        @endforelse
                                     </td>
 
                                     {{-- TOOLS --}}

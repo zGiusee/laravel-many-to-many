@@ -27,7 +27,9 @@
                         <p class="project-properties">
                             {{ $project->id }}
                         </p>
+                    </div>
 
+                    <div>
                         {{-- TYPE --}}
                         <p class="project-p"> Project type:
                         </p>
@@ -40,6 +42,21 @@
                                 {{ $project->type->name }}
                             </p>
                         @endif
+                    </div>
+
+                    <div class="mb-3">
+                        {{-- TECHNOLOGIES --}}
+                        <p class="project-p"> Project Technologies:
+                        </p>
+
+                        @forelse ($project->technologies as $tech)
+                            <div class="my_badge d-inline-block mx-1 {{ $tech->badge_class }}">
+                                {{ $tech->name }}</div>
+                        @empty
+                            <p class="project-properties">
+                                No Technologies used...
+                            </p>
+                        @endforelse
                     </div>
 
                     {{-- DESCRIPTION --}}

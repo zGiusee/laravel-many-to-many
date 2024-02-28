@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +34,10 @@ class ProjectController extends Controller
         // RECUPERO I TIPI DA ASSOCIARE AI PROGETTI
         $types = Type::all();
 
-        return view('admin.project.create', compact('types'));
+        // RECUPERO TUTTI I TIPI DI TECNOLOGIE DA ASSOCIARE AI PROGETTI
+        $technologies = Technology::all();
+
+        return view('admin.project.create', compact('types', 'technologies'));
     }
 
     /**
@@ -72,6 +76,11 @@ class ProjectController extends Controller
         // SALVO LA NUOVA ISTANZA
         $project->save();
 
+        // CONTROLLO SE LA RICHIESTA ABBIA DEI TAGE, E SE SI, LI AGGIUNGO ALLA TABELLA PONTE
+        if ($request->has('technology')) {
+            $project->technologies()->attach($form_data['technology']);
+        }
+
         // FACCIO UN REDIRECT ALLA PAGINA PRINCIPALE DI PROJECTS
         return redirect()->route('admin.projects.index');
     }
@@ -99,7 +108,10 @@ class ProjectController extends Controller
         // RECUPERO I TIPI DA ASSOCIARE AI PROGETTI
         $types = Type::all();
 
-        return view('admin.project.edit', compact('project', 'types'));
+        // RECUPERO TUTTI I TIPI DI TECNOLOGIE DA ASSOCIARE AI PROGETTI
+        $technologies = Technology::all();
+
+        return view('admin.project.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -145,6 +157,11 @@ class ProjectController extends Controller
 
         // USO IL FILL PER RIEMPIRE I CAMPI
         $project->update($form_data);
+
+        // CONTROLLO SE LA RICHIESTA ABBIA DEI TAGE, E SE SI, LI AGGIUNGO/ELIMINO ALLA TABELLA PONTE
+        if ($request->has('technology')) {
+            $project->technologies()->sync($form_data['technology']);
+        }
 
         // FACCIO UN REDIRECT ALLA PAGINA PRINCIPALE DI PROJECTS
         return redirect()->route('admin.projects.show', ['project' =>  $project->slug]);
